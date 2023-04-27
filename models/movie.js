@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+// const validator = require('validator');
 
 const { urlRegExp } = require('../utils/constants');
 const user = require('./user');
@@ -54,8 +55,12 @@ const movieSchema = new mongoose.Schema({
     ref: user,
   },
   movieId: {
-    type: mongoose.ObjectId,
+    type: Number,
     required: true,
+    // validate: {
+    //   validator: (value) => validator.isInt(value),
+    //   message: 'Invalid email',
+    // },
   },
   nameRU: {
     type: String,

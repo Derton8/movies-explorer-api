@@ -24,4 +24,10 @@ const userSchema = new mongoose.Schema({
   },
 }, { versionKey: false });
 
+userSchema.methods.delPassword = function delPassword() {
+  const data = this.toObject();
+  delete data.password;
+  return data;
+};
+
 module.exports = mongoose.model('user', userSchema);
