@@ -3,6 +3,7 @@ const { celebrate, Joi } = require('celebrate');
 Joi.objectId = require('joi-objectid')(Joi);
 
 const { urlRegExp } = require('../utils/constants');
+const { signout } = require('../controllers/users');
 
 const router = express.Router();
 const {
@@ -18,5 +19,7 @@ router.patch('/me', celebrate({
     name: Joi.string().required().min(2).max(30),
   }),
 }), updateUser);
+
+router.post('/signout', signout);
 
 module.exports = router;

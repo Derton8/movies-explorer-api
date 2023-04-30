@@ -81,6 +81,16 @@ module.exports.login = (req, res, next) => {
     .catch(next);
 };
 
+module.exports.signout = (req, res, next) => {
+  try {
+    res
+      .clearCookie('jwt')
+      .send({ message: 'Совершен выход из учетной записи.' });
+  } catch (err) {
+    next(err);
+  }
+};
+
 module.exports.checkAuth = (req, res) => {
   const token = req.cookies.jwt;
   if (!token) {
