@@ -24,6 +24,10 @@ module.exports.updateUser = (req, res, next) => {
     .orFail(new NotFoundError('Пользователь с указанным id не найден.'))
     .then((user) => res.send({ data: user }))
     .catch((err) => {
+      if (err.code === 11000) {
+        next(new ConflictError('Пользователь с данным email уже существует.'));
+        return;
+      }
       if (err.name === 'ValidationError') {
         next(new BadRequestError('Переданы некорректные данные при обновлении пользователя.'));
         return;
