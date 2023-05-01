@@ -24,3 +24,11 @@
 
 `npm run start` — запускает сервер   
 `npm run dev` — запускает сервер с hot-reload
+
+## Ссылки на проект
+
+IP 158.160.29.234
+
+Frontend https://movies-film.nomoredomains.monster
+
+Backend https://api.movies-film.nomoredomains.monster
