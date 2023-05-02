@@ -4,8 +4,8 @@ const ForbiddenError = require('../utils/errors/forbidden-err');
 const NotFoundError = require('../utils/errors/not-found-err');
 
 module.exports.getMovies = ((req, res, next) => {
-  Movie.find({})
-    .populate(['owner'])
+  const userId = req.user._id;
+  Movie.find({ owner: userId })
     .then((movies) => res.send({ data: movies }))
     .catch(next);
 });
@@ -39,7 +39,7 @@ module.exports.createMovie = ((req, res, next) => {
     movieId,
     owner,
   })
-    .then((data) => data.populate(['owner']).then((movie) => res.send({ data: movie })))
+    .then((movie) => res.send({ data: movie }))
     .catch((err) => {
       if (err.name === 'ValidationError') {
         next(new BadRequestError('Переданы некорректные данные при создании фильма.'));
