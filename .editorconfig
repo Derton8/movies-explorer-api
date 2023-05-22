@@ -9,6 +9,8 @@ root = true
 # Possible values - tab, space
 indent_style = space
 
+quote_type = single
+
 # Indentation size in single-spaced characters
 # Possible values - an integer, tab
 indent_size = 2
