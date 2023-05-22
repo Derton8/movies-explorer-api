@@ -101,7 +101,10 @@ module.exports.login = (req, res, next) => {
 module.exports.signout = (req, res, next) => {
   try {
     res
-      .clearCookie('jwt')
+      .clearCookie('jwt', {
+        sameSite: 'none',
+        secure: true,
+      })
       .send({ message: 'Совершен выход из учетной записи.' });
   } catch (err) {
     next(err);
