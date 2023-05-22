@@ -87,6 +87,7 @@ module.exports.login = (req, res, next) => {
           .cookie('jwt', token, {
             maxAge: 7 * 24 * 3600000,
             httpOnly: true,
+            sameSite: 'none',
             secure: true,
           })
           .send({ data: user.delPassword() });
