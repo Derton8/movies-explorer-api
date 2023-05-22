@@ -7,6 +7,7 @@ const { errors } = require('celebrate');
 const router = require('./routes');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const { handleErrors } = require('./middlewares/errors');
+const cors = require('./middlewares/cors');
 
 const { PORT = 3000 } = process.env;
 const app = express();
@@ -20,6 +21,7 @@ mongoose
   .catch((err) => console.log(err));
 
 app.use(requestLogger);
+app.use(cors);
 app.use('/', router);
 app.use(errorLogger);
 
